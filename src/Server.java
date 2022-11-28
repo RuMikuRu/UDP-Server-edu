@@ -16,10 +16,6 @@ public class Server extends Thread {
 
     public void run()
     {
-        for(int i=0;i< buf.length;i++)
-        {
-            buf[i] = ' ';
-        }
         running = true;
 
         while (running)
