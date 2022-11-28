@@ -16,6 +16,10 @@ public class Server extends Thread {
 
     public void run()
     {
+        for(int i=0;i< buf.length;i++)
+        {
+            buf[i] = ' ';
+        }
         running = true;
 
         while (running)
@@ -27,10 +31,8 @@ public class Server extends Thread {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            InetAddress address = packet.getAddress();
-            int port = packet.getPort();
-            packet = new DatagramPacket(buf, buf.length, address, port);
             String receive = new String(packet.getData(), 0, packet.getLength());
+            InetAddress address = packet.getAddress();
 
             if(receive.equals("end"))
             {
@@ -49,4 +51,5 @@ public class Server extends Thread {
         }
         socket.close();
     }
+
 }
